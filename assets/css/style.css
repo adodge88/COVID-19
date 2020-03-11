@@ -14,7 +14,7 @@
   .wrapper {
     position: relative;
     min-height: 100%;
-    padding-bottom: 130px;
+    padding-bottom: 10px;
     overflow: auto;
     background-color: black;
   }
@@ -55,8 +55,7 @@
   }
 
   .container {
-    margin-left: 25px;
-    margin-right: 25px;
+    margin: 50px;
   }
   
   #count-card {
@@ -218,4 +217,20 @@
       opacity: 1;
     }
   }
-  
+/* Scroll for count card */
+  .scroll-box {
+    overflow-y: scroll;
+  /* change height once map is entered */
+    height: 440.33px;
+    padding: 1rem
+}
+.list-group-item{
+  background: transparent;
+}
+
+.article-scroll {
+  overflow-y: scroll;
+/* change height once map is entered */
+  height: 250px;
+  padding: 1rem
+}

@@ -16,7 +16,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    results = session.query(covid19.province_state, covid19.id_loc, covid19.country_region).all()
+    results = session.query(covid19.id_loc, covid19.province_state, covid19.country_region,
+    covid19.lat, covid19.long, covid19.date, covid19.confirmed_to_date, covid19.deaths_to_date, covid19.recovered_to_date).all()
     return jsonify(results)
 if __name__ == '__main__':
     app.run(debug=True)
