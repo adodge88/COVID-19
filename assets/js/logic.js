@@ -1,4 +1,4 @@
-// Store the API in a queryUrl
+
 // Funtion to scale the marker size
 function  markerSize (mag) {
   return mag*50000;
@@ -11,50 +11,75 @@ var myMap = L.map("map", {
 
 // retrieve the data from the csv file
 d3.csv("assets/data/covid19.csv", function(covid19){
-  
+  label='2020-01-22'
+  // console.log(covid19)
   // parse the data 
   covid19.forEach (function(data){
+    // console.log(data)
     data.id_loc = parseInt(data.id_loc)
-    // console.log(data.id_loc)
+  })
 
-    getDataAddMarkers = function( {label, value, map, exclamation} ) {
-      map.eachLayer(function (layer) {
-              if (layer instanceof L.Marker) {
-                  map.removeLayer(layer);
-              }
-      });
-// XXX loop : groulby loc_id and when data.date === label 
-      // filteredData = data.features.filter(function (i, n) {
-      //     return i.properties.title===label;
-      //     });
-  
+  // filter the data by the "label" that in this case is the date
+  var filteredData = covid19.filter(obj => {
+    return obj.date === label
+  })
+  // console.log(filteredData)
 
-      // Julia :create 3 marker arrays, one for each death recovered and 
-      var markerArrayRecovered = [];
-      // call coordinates and 
-      L.geoJson(filteredData, {
-          onEachFeature: function onEachFeature(feature, layer) {
-              // content = `${exclamation} <br> ${feature.properties.content} <br> (${Math.round(value/6 * 100)}% done with story)`
-              // var popup = L.popup().setContent(content);
-              // layer.bindPopup(popup);
-              markerArray.push(layer);
-          }
-      }).addTo(map);
+  // create corresponding marker arrays for the three classes
+  var markerArrayRecovered = [];
+  var markerArrayDeath = [];
+  var markerArrayConfirmed = [];
+
+  for (var i=0; i < filteredData.length ; i++){
+    markerArrayRecovered.push(
+      L.circle([filteredData[i].lat, filteredData[i].long]), {
+      color:"green",
+      fillColor:"green",
+      stroke: true,
+      fillOpacity: 0.5,
+      weight: 0.5,
+      radius:filteredData[i].recovered_to_date
+    })
+    markerArrayDeath.push(
+      L.circle([filteredData[i].lat, filteredData[i].long]), {
+      color:"red",
+      fillColor:"red",
+      stroke: true,
+      fillOpacity: 0.5,
+      weight: 0.5,
+      radius:filteredData[i].death_to_date
+    });
+    markerArrayConfirmed.push(
+      L.circle([filteredData[i].lat, filteredData[i].long]), {
+      color:"blue",
+      fillColor:"blue",
+      stroke: true,
+      fillOpacity: 0.5,
+      weight: 0.5,
+      radius:filteredData[i].confirmed_to_date
+    })
+  }
+      // Add a popup with information
+      // (filteredData, {
+      //     onEachFeature: function onEachFeature(feature, layer) {
+      //         // content = `${feature.properties.content} <br> (${Math.round(value/6 * 100)}% done with story)`
+      //         // var popup = L.popup().setContent(content);
+      //         // layer.bindPopup(popup);
+      //         markerArray.push(layer);
+      //     }
+      // });
       
-      // var markerGroup = L.featureGroup(markerArrayRecovered,markerArrayDeath,markerArrayConfirmed );
-    var markerGroup = L.featureGroup(markerArrayRecovered);
-    map.fitBounds(markerGroup.getBounds()).setZoom(12);
-
-      L.control.timelineSlider({
-        timelineItems: data.date, 
-        changeMap: getDataAddMarkers,
-        extraChangeMapParams: {exclamation: "?ADD TEXT"} })
-    .addTo(mymap);   
-
-  };
-  });
-  createMap(covid19)
-};
+    var markerGroup = L.featureGroup(markerArrayRecovered,markerArrayDeath,markerArrayConfirmed );
+    L.control.timelineSlider({
+      timelineItems: covid19.date, 
+      changeMap: getDataAddMarkers,
+      // extraChangeMapParams: {exclamation: "?ADD TEXT"} 
+    })
+  // .addTo(mymap);   
+      
+    createMap(covid19)
+})
+  
 
 
 function createMap(covid19) {
@@ -73,7 +98,6 @@ function createMap(covid19) {
   });
   // Define a baseMaps object to hold our base layers
   var baseMaps = {
-
     "Dark Map": darkmap,
     "Ligth Map": streetmap
   };
@@ -96,4 +120,3 @@ function createMap(covid19) {
     collapsed: false
   }).addTo(myMap);
 }
-  
