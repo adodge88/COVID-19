@@ -1,12 +1,14 @@
 // retrieve the data from the csv file
 d3.csv("assets/data/covid19.csv", function(covid19){
-  console.log(covid19)
+  // console.log(covid19);
 
   // parse the data 
   covid19.forEach (function(data){
     // console.log(data)
     data.id_loc = parseInt(data.id_loc);
     data.confirmed_to_date = parseInt(data.confirmed_to_date);
+    data.lat = parseFloat(data.lat);
+    data.long = parseFloat(data.long);
   })
 
   // Create map object
@@ -16,7 +18,7 @@ d3.csv("assets/data/covid19.csv", function(covid19){
   });
 
   // Add darkmap tile layer to map
-  var darkmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+  L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
     id: "mapbox.dark",
@@ -37,37 +39,26 @@ d3.csv("assets/data/covid19.csv", function(covid19){
     var filteredData = covid19.filter(obj => {
       return obj.date === label
     })
-    console.log(filteredData)
+    // console.log(filteredData);
 
     // create marker array for the confirmed cases
     var markerArrayConfirmed = [];
-    // var markerArrayDeath = [];
-    // var markerArrayConfirmed = [];
 
     for (var i=0; i < filteredData.length ; i++){
-      markerArrayConfirmed.push(
-        L.circle([filteredData[i].lat, filteredData[i].long]), {
-          color:"blue",
-          fillColor:"blue",
-          stroke: true,
-          fillOpacity: 0.5,
-          weight: 0.5,
-          radius:filteredData[i].confirmed_to_date * 10
-        })
+      if (filteredData[i].confirmed_to_date > 0) {
+        markerArrayConfirmed.push(
+          L.marker([filteredData[i].lat, filteredData[i].long])
+          .bindPopup("<h3>" + filteredData[i].province_state + "</h3> <h3>" + 
+            filteredData[i].country_region + "</h3> <hr> <h3>" + filteredData[i].date + 
+            "</h3> <hr> <h3>Confirmed: " + filteredData[i].confirmed_to_date + 
+            "</h3> <h3>Deaths: " + filteredData[i].deaths_to_date + 
+            "</h3> <h3>Recovered: " + filteredData[i].recovered_to_date)
+          .addTo(myMap)
+        )
+      }
     }
 
-    // Add a popup with information
-        // (filteredData, {
-        //     onEachFeature: function onEachFeature(feature, layer) {
-        //         // content = `${feature.properties.content} <br> (${Math.round(value/6 * 100)}% done with story)`
-        //         // var popup = L.popup().setContent(content);
-        //         // layer.bindPopup(popup);
-        //         markerArray.push(layer);
-        //     }
-        // });
-
-    var markerGroup = L.featureGroup(markerArrayConfirmed);
-    map.fitBounds(markerGroup.getBounds()).setZoom(12);
+    // console.log(markerArrayConfirmed);
 
   }
 
