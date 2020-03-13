@@ -66,9 +66,8 @@
 <!--TOP CARDS-->
             <div class="row">
                 <div class="card-deck">
-                    <div class="col-md-3 data-date"><!--Empty Placeholder--></div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card text-center" style = "background:#84ddc8a6" id = "confirmed-card">
                         <h3 class="card-header" style = "background:rgb(64, 75, 72); padding:10px;">Confirmed</h3>
                         <div class="card-body">
@@ -77,7 +76,7 @@
                     </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card text-center" style = "background:#84ddc8a6" id = "recovered-card">
                         <h3 class="card-header" style = "background:rgb(64, 75, 72); padding:10px;">Recovered</h3>
                         <div class="card-body">
@@ -86,7 +85,7 @@
                     </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card text-center" style = "background:#84ddc8a6" id = "death-card">
                         <h3 class="card-header" style = "background:rgb(64, 75, 72); padding:10px;">Deaths</h3>
                         <div class="card-body">
@@ -105,16 +104,19 @@
     </div>
 
 
+<div class = "row">
  <!-- Card Count (left) -->
  <div class="row">
-    <div class="col-md-3" id="count-card">
-        <div class="card text-center" style = "width:24rem; background:#84ddc8a6;">
-          <h3 class="card-header" style = "background:rgb(64, 75, 72); padding:10px;">Count by Country</h3>
+    <div class="col-md-6" id="count-card">
+        <div class="card text-center" style = "background:#84ddc8a6;">
+          <h3 class="card-header" style = "background:rgb(64, 75, 72); padding:10px;">Cumulitive Count by Country</h3>
             <div class="card-body scroll-box">
                 <table class = "table table-hover ">
                     <thead>
                         <th scope="col">Country</th>
                         <th scope="col">Confirmed Count</th>
+                        <th scope="col">Recovered Count</th>
+                        <th scope="col">Death Count</th>
                     </thead>
                     <tbody>
                        <!-- DATA HERE -->
@@ -129,7 +131,7 @@
     </div>
 
 <!-- ARTICLE -->
-    <div class="col-md-9">
+    <div class="col-md-6">
         <div class="card" style = "background:#84ddc8a6">
           <h3 class="card-header text-center" style = "background:rgb(64, 75, 72); padding:10px;">Articles</h3>
           <div class="card-body article-scroll" style="padding-left:25px; padding-right:25px;">
@@ -166,7 +168,7 @@
     <script type="text/javascript" src="assets/js/config.js"></script>
     <!-- Our JS -->
     <script type="text/javascript" src="assets/js/logic.js"></script>
-
+    
 
 
 </body>
