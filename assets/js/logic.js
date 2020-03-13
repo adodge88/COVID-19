@@ -127,8 +127,7 @@ d3.select("footer").selectAll("span")
 
 // ================== LEFT COUNT CARD ==================
 // import new csv of grouped coutnries w/ total confirmed_to_date count
-d3.csv("assets/data/confirmed_country_count.csv").then(function(data, err){
-  if (err) throw err; 
+d3.csv("assets/data/confirmed_country_count.csv", function(data){
   // Use D3 to select the table body
   var tbody = d3.select("tbody");
   //loop through csv and push to HTML table
