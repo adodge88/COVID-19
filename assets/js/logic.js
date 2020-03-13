@@ -123,6 +123,20 @@ d3.select("footer").selectAll("span")
 // .classed("card-title card-num", true) // sets the class of the new H2
 .text(`Most Recent Data from: ${maxDate} [YYYY/MM/DD]`);
 
+});
 
-
+// ================== LEFT COUNT CARD ==================
+// import new csv of grouped coutnries w/ total confirmed_to_date count
+d3.csv("assets/data/confirmed_country_count.csv").then(function(data, err){
+  if (err) throw err; 
+  // Use D3 to select the table body
+  var tbody = d3.select("tbody");
+  //loop through csv and push to HTML table
+  data.forEach((country) =>{
+      var row = tbody.append("tr");
+      Object.entries(country).forEach(([key, value]) => {
+          var cell = row.append("td");
+          cell.text(value);
+      });
+  });
 });
