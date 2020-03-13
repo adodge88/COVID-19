@@ -14,7 +14,8 @@ d3.csv("assets/data/covid19.csv", function(covid19){
   // Create map object
   var myMap = L.map("map", {
     center: [36.8210, 5.7634],
-    zoom: 2
+    zoom: 2,
+    scrollWheelZoom: false
   });
 
   // Add darkmap tile layer to map
