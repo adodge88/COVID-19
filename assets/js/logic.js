@@ -68,4 +68,61 @@ d3.csv("assets/data/covid19.csv", function(covid19){
     // extraChangeMapParams: {exclamation: "?ADD TEXT"} 
   }).addTo(myMap);
 
-})
+
+// ================== TOP SCORE CARDS ==================
+// Determine the maximum date value in the data
+    var maxDate = d3.max(covid19.map(d=>d.date));
+    console.log("MaxDate",maxDate);
+
+// Extract only the "rows" where date = maxDate
+    var recentDate = covid19.filter(function(d){ return d.date == maxDate });
+
+// Create empty arrays to push the data from the for loop into
+    var confirmedArray = [];
+    var deathArray = [];
+    var recoveredArray = [];
+
+// Loop through the data and extract all the confirmed_to_date, deaths_to_date
+// and recovered_to_date values from the most recent date in the data
+    for (i = 0; i < recentDate.length; i++) {
+        confirmedArray.push(recentDate[i].confirmed_to_date)
+        deathArray.push(recentDate[i].deaths_to_date)
+        recoveredArray.push(recentDate[i].recovered_to_date)
+      }
+     
+// Sum the arrays to obtain a total for confirmed, deaths, and arrays for the most
+// recent date in the data
+    var totalConfirmed = d3.sum(confirmedArray); 
+    console.log("Confirmed:",totalConfirmed);
+    var totalRecovered = d3.sum(deathArray); 
+    console.log("Recovered:",totalRecovered);
+    var totalDeaths = d3.sum(recoveredArray); 
+    console.log("Deaths:",totalDeaths);
+
+
+    d3.select("#confirmed-card").selectAll("div")
+    .insert("h2")
+    .classed("card-title card-num", true) // sets the class of the new H2
+    .text(totalConfirmed);
+
+    d3.select("#recovered-card").selectAll("div")
+    .insert("h2")
+    .classed("card-title card-num", true) // sets the class of the new H2
+    .text(totalRecovered);
+
+    d3.select("#death-card").selectAll("div")
+    .insert("h2")
+    .classed("card-title card-num", true) // sets the class of the new H2
+    .text(totalDeaths);
+
+
+// ================== DATA DATE ==================
+
+d3.select("footer").selectAll("span")
+.insert("p")
+// .classed("card-title card-num", true) // sets the class of the new H2
+.text(`Most Recent Data from: ${maxDate} [YYYY/MM/DD]`);
+
+
+
+});

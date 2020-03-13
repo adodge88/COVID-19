@@ -217,6 +217,13 @@
       opacity: 1;
     }
   }
+
+/* CARD STYLES */
+
+.card-num{
+  height:75px;
+}
+
 /* Scroll for count card */
   .scroll-box {
     overflow-y: scroll;
