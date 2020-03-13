@@ -5,13 +5,36 @@
   <meta charset="utf-8">
   <title>COVID-19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- BootStrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <!-- D3 -->
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+  crossorigin=""></script>
+  <!-- Leaflet-timeline-slider from https://github.com/svitkin/leaflet-timeline-slider -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+  integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+  crossorigin=""></script>
+  <script src="src/leaflet-timeline-slider.js"></script>
+  <!-- Our Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/stylem.css">
 </head>
 
 <body>
-
+    
     <div class="wrapper">
 <!-- Nav Bar -->
         <nav class="navbar navbar-default">
@@ -66,14 +89,16 @@
             </div>
             
             </div>
+ 
+    <div class="row">
+    <!-- MAP -->
+        <div class="col-md-12" id="map"></div>
+              
+    </div>
 
-            
-         
-      
 
-
- <!-- Card Count (left) -->
- <div class="row">
+<div class = "row">
+<!-- Card Count (left) -->
     <div class="col-md-3" id="count-card">
         <div class="card text-center" style = "width:24rem; background:#84ddc8a6;">
           <h3 class="card-header" style = "background:rgb(64, 75, 72); padding:10px;">Count by Country</h3>
@@ -155,16 +180,7 @@
         </div>
     </div>
 
-<!-- MAP -->
-  <div class="col-md-9" id="map">
-    <img src="https://pngimg.com/uploads/world_map/world_map_PNG28.png" width=100%>
-  </div>
-              
-</div>
-
 <!-- ARTICLE -->
-<div class = "row">
-    <div class="col-md-3"><!--Empty PlaceHolder--></div>
     <div class="col-md-9">
         <div class="card" style = "background:#84ddc8a6">
           <h3 class="card-header text-center" style = "background:rgb(64, 75, 72); padding:10px;">Articles</h3>
@@ -197,6 +213,12 @@
         </footer>
 
     </div>
+
+    <!-- API key -->
+    <script type="text/javascript" src="assets/js/config.js"></script>
+    <!-- Our JS -->
+    <script type="text/javascript" src="assets/js/logic.js"></script>
+
 
 </body>
 
