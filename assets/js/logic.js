@@ -46,15 +46,23 @@ d3.csv("assets/data/covid19.csv", function(covid19){
 
     for (var i=0; i < filteredData.length ; i++){
       if (filteredData[i].confirmed_to_date > 0) {
-        markerArrayConfirmed.push(
-          L.marker([filteredData[i].lat, filteredData[i].long])
+        // markerArrayConfirmed.push(
+          L.circle([filteredData[i].lat,filteredData[i].long], {
+            color:"blue",
+            fillColor:"blue",
+            stroke: true,
+            fillOpacity: 0.5,
+            weight: 0.5,
+            radius:filteredData[i].confirmed_to_date * 100
+          })
+
           .bindPopup("<h3>" + filteredData[i].province_state + "</h3> <h3>" + 
             filteredData[i].country_region + "</h3> <hr> <h3>" + filteredData[i].date + 
             "</h3> <hr> <h3>Confirmed: " + filteredData[i].confirmed_to_date + 
             "</h3> <h3>Deaths: " + filteredData[i].deaths_to_date + 
             "</h3> <h3>Recovered: " + filteredData[i].recovered_to_date)
           .addTo(myMap)
-        )
+        // )
       }
     }
 
