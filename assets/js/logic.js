@@ -58,6 +58,30 @@ d3.csv("assets/data/covid19.csv", function(covid19){
       weight: 0.5,
       radius:filteredData[i].confirmed_to_date
     })
+<<<<<<< HEAD
+=======
+    // console.log(filteredData);
+
+    // create marker array for the confirmed cases
+    var markerArrayConfirmed = [];
+
+    for (var i=0; i < filteredData.length ; i++){
+      if (filteredData[i].confirmed_to_date > 0) {
+        markerArrayConfirmed.push(
+          L.marker([filteredData[i].lat, filteredData[i].long])
+          .bindPopup("<h3>" + filteredData[i].province_state + "</h3> <h3>" + 
+            filteredData[i].country_region + "</h3> <hr> <h3>" + filteredData[i].date + 
+            "</h3> <hr> <h3>Confirmed: " + filteredData[i].confirmed_to_date + 
+            "</h3> <h3>Deaths: " + filteredData[i].deaths_to_date + 
+            "</h3> <h3>Recovered: " + filteredData[i].recovered_to_date)
+          .addTo(myMap)
+        )
+      }
+    }
+
+    // console.log(markerArrayConfirmed);
+
+>>>>>>> 0382e8dfafbab579f6b028a3b81419716ae53f95
   }
       // Add a popup with information
       // (filteredData, {
@@ -82,6 +106,7 @@ d3.csv("assets/data/covid19.csv", function(covid19){
   
 
 
+<<<<<<< HEAD
 function createMap(covid19) {
   // Define streetmap and darkmap layers
   var streetmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -112,6 +137,20 @@ function createMap(covid19) {
     ],
     zoom: 2,
     layers: [darkmap, covid19]
+=======
+// ================== LEFT COUNT CARD ==================
+// import new csv of grouped coutnries w/ total confirmed_to_date count
+d3.csv("assets/data/country_count.csv", function(data){
+  // Use D3 to select the table body
+  var tbody = d3.select("tbody");
+  //loop through csv and push to HTML table
+  data.forEach((country) =>{
+      var row = tbody.append("tr");
+      Object.entries(country).forEach(([key, value]) => {
+          var cell = row.append("td");
+          cell.text(value);
+      });
+>>>>>>> 0382e8dfafbab579f6b028a3b81419716ae53f95
   });
   // Create a layer control
   // Pass in our baseMaps and overlayMaps
