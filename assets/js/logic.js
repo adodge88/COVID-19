@@ -40,7 +40,7 @@ d3.csv("assets/data/covid19.csv", function(covid19){
     var filteredData = covid19.filter(obj => {
       return obj.date === label
     })
-    // console.log(filteredData);
+
 
     // create marker array for the confirmed cases
     var markerArrayConfirmed = [];

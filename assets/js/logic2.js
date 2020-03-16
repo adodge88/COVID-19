@@ -32,7 +32,7 @@ d3.csv("assets/data/covid19.csv", function(covid19){
 
     //Remove existing layer when change to time slider
     map.eachLayer(function (layer) {
-      if (layer instanceof L.Marker) {
+      if (layer instanceof L.circle) {
         map.removeLayer(layer);
       }
     });
@@ -41,14 +41,11 @@ d3.csv("assets/data/covid19.csv", function(covid19){
     var filteredData = covid19.filter(obj => {
       return obj.date === label
     })
-    console.log(filteredData);
-
+   
     // create marker array for the confirmed cases
-    var markerArrayConfirmed = [];
-
+    
     for (var i=0; i < filteredData.length ; i++){
       if (filteredData[i].confirmed_to_date > 0) {
-        // markerArrayConfirmed.push(
           L.circle([filteredData[i].lat,filteredData[i].long], {
             color:"yellow" ,
             fillColor: markerColor(filteredData[i].confirmed_to_date),
@@ -57,23 +54,19 @@ d3.csv("assets/data/covid19.csv", function(covid19){
             weight: 0.5,
             radius:markerSize(filteredData[i].confirmed_to_date)
           })
-
           .bindPopup("<h3>" + filteredData[i].province_state + "</h3> <h3>" + 
             filteredData[i].country_region + "</h3> <hr> <h3>" + filteredData[i].date + 
             "</h3> <hr> <h3>Confirmed: " + filteredData[i].confirmed_to_date + 
             "</h3> <h3>Deaths: " + filteredData[i].deaths_to_date + 
             "</h3> <h3>Recovered: " + filteredData[i].recovered_to_date)
           .addTo(myMap)
-        // )
       }
     }
-
-    // console.log(markerArrayConfirmed);
-
   }
 
   L.control.timelineSlider({
-    timelineItems: ["2020-01-22", "2020-01-25", "2020-01-29","2020-02-01","2020-02-05", "2020-02-09", "2020-02-13", "2020-02-17", "2020-02-21", "2020-02-25", "2020-02-29", "2020-03-02", "2020-03-05"],
+    timelineItems: ["2020-01-22", "2020-01-26", "2020-01-30","2020-02-04","2020-02-08", "2020-02-12", "2020-02-16", "2020-02-20",
+     "2020-02-24", "2020-02-29", "2020-03-03", "2020-03-06","2020-03-09","2020-03-11","2020-03-13" ,"2020-03-14", "2020-03-15"],
     changeMap: getDataAddMarkers,
     // extraChangeMapParams: {exclamation: "?ADD TEXT"} 
   }).addTo(myMap);
@@ -90,8 +83,6 @@ function  markerColor (mag) {
     return "red" }
     else {return "yellow"}
 };
-
-
 
 
 // ================== TOP SCORE CARDS ==================
@@ -152,7 +143,7 @@ d3.select("footer").selectAll("span")
 
 // ================== LEFT COUNT CARD ==================
 // import new csv of grouped coutnries w/ total confirmed_to_date count
-d3.csv("assets/data/confirmed_country_count.csv", function(data){
+d3.csv("assets/data/country_count.csv", function(data){
   // Use D3 to select the table body
   var tbody = d3.select("tbody");
   //loop through csv and push to HTML table
