@@ -95,9 +95,9 @@ d3.csv("assets/data/covid19.csv", function(covid19){
 // recent date in the data
     var totalConfirmed = d3.sum(confirmedArray); 
     console.log("Confirmed:",totalConfirmed);
-    var totalRecovered = d3.sum(deathArray); 
+    var totalRecovered = d3.sum(recoveredArray); 
     console.log("Recovered:",totalRecovered);
-    var totalDeaths = d3.sum(recoveredArray); 
+    var totalDeaths = d3.sum(deathArray); 
     console.log("Deaths:",totalDeaths);
 
 
