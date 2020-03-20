@@ -10,7 +10,9 @@ d3.csv("assets/data/covid19.csv", function(covid19){
     data.confirmed_to_date = parseInt(data.confirmed_to_date);
     data.lat = parseFloat(data.lat);
     data.long = parseFloat(data.long);
+    
   })
+ 
 
   // Create map object
   var myMap = L.map("map", {
@@ -63,6 +65,8 @@ d3.csv("assets/data/covid19.csv", function(covid19){
       }
     }
   }
+  // var dates=Array.from(new Set())
+  // dateParts= dateString.split("-")
 
   L.control.timelineSlider({
     timelineItems: ["2020-01-22", "2020-01-26", "2020-01-30","2020-02-04","2020-02-08", "2020-02-12", "2020-02-16", "2020-02-20",
@@ -110,9 +114,9 @@ function  markerColor (mag) {
 // recent date in the data
     var totalConfirmed = d3.sum(confirmedArray); 
     console.log("Confirmed:",totalConfirmed);
-    var totalRecovered = d3.sum(deathArray); 
+    var totalRecovered = d3.sum(recoveredArray); 
     console.log("Recovered:",totalRecovered);
-    var totalDeaths = d3.sum(recoveredArray); 
+    var totalDeaths = d3.sum(deathArray); 
     console.log("Deaths:",totalDeaths);
 
 
