@@ -1,7 +1,7 @@
 ### COVID-19 : Coronavirus Outbreak
 
- ![](assets\images\title.PNG)
- 
+ ![](assets/images/title.PNG)
+
 This project aims to create a dashboard to track COVID-19 outbreak that was initially detected in Wuhan (Hubei, China), and was declared pandemic by the WHO on Wednesday 3-11-2020.
 
 The project consists in 1) Data manipulation (ETL) 2) dashboard creation.
@@ -21,7 +21,7 @@ Dashboard:
     Scrolling features on the map were disabled for usability and scroll bars were added to the country count and article cards for the most updated data entry.
     We used flask to scrape for article title and date of article but because it runnes on a local server this feature can not be deploided. 
 
-    ![Dashboard](assets\images\Dashboard.PNG)
+    ![Dashboard](assets/images/Dashboard.PNG)
 
 
 
