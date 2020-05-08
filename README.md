@@ -1,5 +1,7 @@
 ### COVID-19 : Coronavirus Outbreak
+
  ![](assets\images\title.PNG)
+ 
 This project aims to create a dashboard to track COVID-19 outbreak that was initially detected in Wuhan (Hubei, China), and was declared pandemic by the WHO on Wednesday 3-11-2020.
 
 The project consists in 1) Data manipulation (ETL) 2) dashboard creation.
