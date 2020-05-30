@@ -20,7 +20,7 @@ To share and visualize the data, we used HTML, CSS and Bootstrap grid -> in Java
 
 The dashboard has:
 
-- Interactive map using leaflet.js library and a plugin library leaflet-timeline-slider ( https://github.com/svitkin/leaflet-timeline-slider). The data is fetched using D3, and filter by date. The data markers reflect the number of cases and is updated after changing the date.  
+- Interactive map using leaflet.js library and a plugin library leaflet-timeline-slider (https://github.com/svitkin/leaflet-timeline-slider). The data is fetched using D3, and filter by date. The data markers reflect the number of cases and is updated after changing the date.  
 - The card data was first calculated and the pushed to the html using d3
 - Scrolling features on the map were disabled for usability and scroll bars were added to the country count and article cards for the most updated data entry.
 - We used flask to scrape for article title and date of article but because it runnes on a local server this feature can not be deploided. 
