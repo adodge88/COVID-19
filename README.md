@@ -6,7 +6,7 @@ This project aims to create a dashboard to track COVID-19 outbreak that was init
 
 ## The project consists in 1) Data manipulation (ETL) 2) dashboard creation.
 
-# Data Manupulation:
+# Data Manipulation:
 - Data Extraction: 
     original data: three csv  files from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository https://github.com/CSSEGISandData/COVID-19
 - Data Transformation: 
